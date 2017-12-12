@@ -178,16 +178,16 @@ function updateHiddenValues(inputId, value) {
             addSelect('#select-channels');
             break;
         case '#select-merchants':
-            $('#MerchantID').val(value); debugger;
+            $('#MerchantID').val(value); 
             checkEnableOrder(inputId);
             addSelect('#select-user');
 
             break;
         case '#select-merchants-list':
-            $('#MerchantList').val(value); debugger;
+            $('#MerchantList').val(value); 
             break;
         case '#select-channels':
-            $('#ChannelList').val(value); debugger;
+            $('#ChannelList').val(value);
 
             checkEnableOrderMetrics(inputId);
             addSelect('#select-merchants-list');
@@ -286,7 +286,7 @@ function getJsonData(id, url, paramName, paramVal, pos ) {
         data: paramName + paramVal,
         async: false,
         success: function (data) {
-            debugger
+         
             if (data !== null) {
                 // Enabled Merchant Dropdown List
                 $(id).data('selectx-disable', false);
@@ -303,7 +303,7 @@ function getJsonData(id, url, paramName, paramVal, pos ) {
 function getJsonDataMultParams(id, url, name, value) {
     var bankId = $('#BankList').val();
     var channels = $('#ChannelList').val();
-    debugger;
+ 
     if (!channels || !bankId) {
 
         $('#select-merchants-list').data('selectx-disable', true);
@@ -317,7 +317,7 @@ function getJsonDataMultParams(id, url, name, value) {
         data: { bankID: bankId, channelList: channels },
         async: false,
         success: function (data) {
-            debugger
+            
             if (data !== null) {
                 // Enabled Merchant Dropdown List
                 $(id).data('selectx-disable', false);
