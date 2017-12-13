@@ -7,9 +7,8 @@ With the collection function, you will be able to consolidate all the init to on
 <br>
 I have included a test JS file with some generic logic that includes, but it is not limited to: 
 <ul>
-  <li>Server Side Calls</li>
-    <li>Role handling</li>
     <li>Server Side Calls</li>
+    <li>Role handling</li>
     <li>Form submission</li>
       <li>Custom filtering</li>
   </ul>
