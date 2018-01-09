@@ -1,4 +1,4 @@
-﻿//     ____  _________   ____________   _____ ________    __________________   ___   _______  ___   ________
+//     ____  _________   ____________   _____ ________    __________________   ___   _______  ___   ________
 //    / __ \/ ____/   | / ____/_  __/  / ___// ____/ /   / ____/ ____/_  __/  /   | / ___/\ \/ / | / / ____/
 //   / /_/ / __/ / /| |/ /     / /     \__ \/ __/ / /   / __/ / /     / /    / /| | \__ \  \  /  |/ / /     
 //  /  _,_/ /___/ ___ / /___  / /     _ _/ / /___/ /___/ /___/ /___  / /    / ___ |___/ /  / / /|  / /___   
@@ -47,7 +47,7 @@ function addSelect(id) {
     }
 
     var options = DATA;
-    var MAX_RESULTS = 20;
+    var MAX_RESULTS = 20; //check
     var ASYNC_DELAY = 500;
 
     if (!DATA) { //validate
@@ -58,7 +58,7 @@ function addSelect(id) {
 
 
     var Container = React.createClass({
-        getInitialState () {
+        getInitialState: function () {
             return {
                 multi: isMulti,
                 options: DATA,
@@ -108,7 +108,7 @@ function addSelect(id) {
                 }
 
                 tempVal = (tempVal === null ? '' : tempVal);
-                return tempVal.toLowerCase().substr(0, input.length) === input;
+                return tempVal.toLowerCase().substr(0, input.length).indexOf(tempVal);
 
             });
             var data = {
@@ -122,7 +122,7 @@ function addSelect(id) {
             }, ASYNC_DELAY);
 
         },
-        updateValue (value) {
+        updateValue: function (value) {
             debugger;
             updateHiddenValues(id, value); //valueForAspFor&callajax
 
@@ -130,7 +130,7 @@ function addSelect(id) {
             this.setState({ value: value });
 
         },
-        render () {
+        render: function () {
 
             return React.createElement(Select.Async, {
                 multi: isMulti,
@@ -144,8 +144,9 @@ function addSelect(id) {
                 loadOptions: this.getFilteredResults,
                 simpleValue: true,
                 placeholder: hasDefault ? labelDefault : selectPlaceholder + '...',
-                autoload: false,
-                onChange: this.updateValue
+                autoload: true, // show on 1 click
+                onChange: this.updateValue,
+                searchPromptText: locolizedTypeToSearch
 
             });
         }
@@ -178,16 +179,16 @@ function updateHiddenValues(inputId, value) {
             addSelect('#select-channels');
             break;
         case '#select-merchants':
-            $('#MerchantID').val(value); 
+            $('#MerchantID').val(value); debugger;
             checkEnableOrder(inputId);
             addSelect('#select-user');
 
             break;
         case '#select-merchants-list':
-            $('#MerchantList').val(value); 
+            $('#MerchantList').val(value); debugger;
             break;
         case '#select-channels':
-            $('#ChannelList').val(value);
+            $('#ChannelList').val(value); debugger;
 
             checkEnableOrderMetrics(inputId);
             addSelect('#select-merchants-list');
@@ -286,7 +287,7 @@ function getJsonData(id, url, paramName, paramVal, pos ) {
         data: paramName + paramVal,
         async: false,
         success: function (data) {
-         
+            debugger
             if (data !== null) {
                 // Enabled Merchant Dropdown List
                 $(id).data('selectx-disable', false);
@@ -303,7 +304,7 @@ function getJsonData(id, url, paramName, paramVal, pos ) {
 function getJsonDataMultParams(id, url, name, value) {
     var bankId = $('#BankList').val();
     var channels = $('#ChannelList').val();
- 
+    debugger;
     if (!channels || !bankId) {
 
         $('#select-merchants-list').data('selectx-disable', true);
@@ -317,7 +318,7 @@ function getJsonDataMultParams(id, url, name, value) {
         data: { bankID: bankId, channelList: channels },
         async: false,
         success: function (data) {
-            
+            debugger
             if (data !== null) {
                 // Enabled Merchant Dropdown List
                 $(id).data('selectx-disable', false);
